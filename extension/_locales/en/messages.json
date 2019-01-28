@@ -1,8 +1,8 @@
 {
 	"name": {
-		"message": "Normalizer thing"
+		"message": "vmo audio normalizer"
 	},
 	"description": {
-		"message": "Description of the normalizer"
+		"message": "Audio level normalizer for voice.mozilla.org contribution."
 	}
 }
