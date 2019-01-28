@@ -18,6 +18,7 @@
     "content_scripts": [
         {
             "matches": ["*://voice.mozilla.org/*"],
+            "run_at": "document_end",
             "js": ["normalizer.js"]
         }
     ],

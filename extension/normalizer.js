@@ -85,12 +85,15 @@ export default*/ class NormalizedPlayer /*implements NormalizedPlayerInterface*/
   }
 }
 
-console.log("Normalizer loaded for page ", window.location.href);
+//console.log("Normalizer loaded for page ", window.location.href);
 
-window.onload = (() => {
+function scanPage() {
 	//console.log("checking for audio items");
 	const list = document.getElementsByTagName("audio");
 	for (item of list) {
+		if (item.muted === true) {
+			continue;
+		}
 		console.log("Normalizing audio item", item);
 		item.muted = true;
 		item.addEventListener("play", async () => {
@@ -100,10 +103,21 @@ window.onload = (() => {
 		});
 		item.addEventListener("pause", async () => {
 			//console.log("Paused");
-			item.normalized_player.close();
+			//item.normalized_player.close();
 		});
 		/*item.addEventListener("ended", function () {
 			console.log("Ended");
 		});*/
 	}
+}
+
+var observer = new MutationObserver(function(mutations) {
+	scanPage();
 });
+
+var config = { attributes: false, subtree: true, childList: true };
+
+observer.observe(document.body, config);
+
+window.onload = scanPage;
+window.onpopstate = scanPage;
