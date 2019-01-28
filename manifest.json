@@ -20,5 +20,8 @@
             "matches": ["*://voice.mozilla.org/*"],
             "js": ["normalizer.js"]
         }
+    ],
+    "permissions": [
+        "<all_urls>"
     ]
 }
